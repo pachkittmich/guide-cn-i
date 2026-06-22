@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+    <title>爱游戏 · 稳定入口说明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #f7f4ed;  /* 米白基色，略带暖感 */
+            font-family: 'Georgia', 'Noto Serif SC', 'Times New Roman', serif;
+            color: #2e2b28;
+            line-height: 1.7;
+            padding: 2.4rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 780px;
+            width: 100%;
+            background: #fcfaf6;
+            padding: 2.8rem 2.2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+            transition: padding 0.2s;
+        }
+
+        /* 文章式排版 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.1rem;
+            color: #342f2b;
+            border-bottom: 1px solid #e1dbd1;
+            padding-bottom: 0.5rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #7a736b;
+            margin-top: 0.2rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            border-left: 3px solid #c9b79b;
+            padding-left: 1rem;
+        }
+
+        .opening {
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #423d37;
+            margin: 1.2rem 0 1rem 0;
+            padding: 1rem 1.2rem;
+            background: #f3efe8;
+            border-radius: 6px;
+            border-left: 5px solid #9e8d78;
+        }
+
+        .opening span {
+            background: #e7ded1;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            color: #2d2822;
+        }
+
+        .intro-text {
+            margin: 1.8rem 0;
+            font-size: 1.02rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.1rem;
+            text-align: justify;
+        }
+
+        .intro-text a {
+            color: #5f5344;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: background 0.2s;
+            padding: 0 2px;
+        }
+
+        .intro-text a:hover {
+            background: #ddd3c1;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+
+        /* 特点列表——温和卡片式 */
+        .feature-box {
+            background: #f8f4ed;
+            border: 1px solid #e3dcd0;
+            border-radius: 12px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 1.5rem 0;
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .feature-box h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #3f3830;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-box h3::before {
+            content: "✦";
+            color: #a48d74;
+            font-size: 1.2rem;
+            margin-right: 4px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            border-bottom: 1px dashed #e3dacd;
+            padding-bottom: 0.8rem;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .feature-list li::before {
+            content: "·";
+            font-weight: 700;
+            color: #7f6e5b;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-right: 0.2rem;
+        }
+
+        .feature-list strong {
+            display: block;
+            font-weight: 500;
+            color: #3f372f;
+        }
+
+        .feature-list .desc {
+            color: #56504a;
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        /* 引用/提示框 */
+        .notice {
+            background: #ede8de;
+            border-left: 6px solid #b6a48b;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+            color: #2f2a25;
+        }
+
+        .notice strong {
+            font-weight: 600;
+            color: #3a322a;
+        }
+
+        .notice a {
+            color: #5f5241;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 400;
+        }
+
+        .notice a:hover {
+            background: #d5cbb8;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            margin-top: 2.6rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ded6c8;
+            font-size: 0.95rem;
+            color: #605a52;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .closing p {
+            margin: 0.2rem 0;
+        }
+
+        .closing .small-note {
+            font-size: 0.85rem;
+            color: #8b8379;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e3dbd0;
+            margin: 1.6rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .page-wrap { padding: 1.6rem 1.2rem; }
+            h1 { font-size: 1.7rem; }
+            .opening { font-size: 1.2rem; padding: 0.8rem 1rem; }
+            .feature-box { padding: 1.2rem 1.2rem; }
+            .closing { flex-direction: column; gap: 0.3rem; }
+        }
+
+        @media (max-width: 400px) {
+            .page-wrap { padding: 1.2rem 0.9rem; }
+            .feature-list li { gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <h1>爱游戏</h1>
+    <div class="subhead">一个稳定的入口 · 页面说明</div>
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        <span>爱游戏</span>，从这里开始，路径清晰。
+    </div>
+
+    <!-- 承接段落 -->
+    <div class="intro-text">
+        <p>
+            在寻找一个可靠的游戏信息或服务入口时，很多人首先会想到 <a href="https://cn-i-game.com.cn">爱游戏</a>。
+            这个站点从最初就致力于提供一种简洁、直接的访问方式：没有多余的跳转，也没有令人困惑的中间页。
+            无论你是初次接触还是已经熟悉，通过 <a href="https://cn-i-game.com.cn">爱游戏</a> 都可以快速进入核心内容区，
+            这也是许多人将其设为书签的原因之一。
+        </p>
+        <p>
+            作为一项持续维护的服务，<a href="https://cn-i-game.com.cn">爱游戏</a> 本身并不依赖花哨的界面或夸大的描述，
+            而是把稳定性和可读性放在首位。下面的特点概括了它最值得注意的几点。
+        </p>
+    </div>
+
+    <!-- 特点列表（卡片） -->
+    <div class="feature-box">
+        <h3>几个值得留意的特点</h3>
+        <ul class="feature-list">
+            <li>
+                <div>
+                    <strong>入口直接，结构简明</strong>
+                    <span class="desc">首页不堆砌信息，访问后能快速判断方向。没有过度的弹窗或强制跳转，减少干扰。</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>页面说明相对完整</strong>
+                    <span class="desc">对于常见的使用场景或功能模块，通常会有必要的文字说明，帮助新访客理解用途。</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>长期可访问，变化较少</strong>
+                    <span class="desc">域名的解析和页面结构保持稳定，不必频繁担心链接失效或布局大幅改动。</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>内容偏向实用与资讯</strong>
+                    <span class="desc">围绕游戏相关的信息或工具展开，叙述语气平实，避免过度营销或浮夸承诺。</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 提示 / 引用块 -->
+    <div class="notice">
+        <strong>一点提示：</strong> 
+        如果在访问 <a href="https://cn-i-game.com.cn">爱游戏</a> 时遇到页面加载缓慢或异常，
+        可以先检查本地网络环境，或尝试清除浏览器缓存。多数情况下，网站本身保持正常响应。
+        另外，请通过官方渠道进入，避免使用来路不明的镜像或第三方转发链接。
+    </div>
+
+    <!-- 温和结尾 + 附加说明 -->
+    <div class="closing">
+        <p>— 以上是关于 <strong>爱游戏</strong> 的简要说明，希望能帮助你更快熟悉这个入口。</p>
+        <p class="small-note">页面信息 · 仅作参考，实际内容以站点更新为准。</p>
+    </div>
+
+</div>
+</body>
+</html>
