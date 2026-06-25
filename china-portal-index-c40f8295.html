@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 中国端口 | 赛事导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f6f8fc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero-dark {
+      background: linear-gradient(145deg, #0b1622 0%, #18263a 100%);
+      color: #edf2f7;
+      padding: 3rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-dark::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: 30%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(47, 128, 237, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 顶部导航 */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, #b3d4ff, #f2e9c2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 0.2rem 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #facc15;
+      border-bottom-color: #facc15;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 780px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #facc15, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #9aaec9;
+      max-width: 650px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* 浅色正文区 */
+    .content-area {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 3.5rem;
+    }
+
+    .intro-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .intro-text {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .intro-text h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      border-left: 4px solid #2f80ed;
+      padding-left: 1rem;
+      color: #0b1a2f;
+    }
+
+    .intro-text p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #334155;
+    }
+
+    .intro-text a {
+      color: #2f80ed;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    .intro-text a:hover {
+      color: #f59e0b;
+    }
+
+    .intro-highlight {
+      background: #eef3fc;
+      padding: 1.6rem 2rem;
+      border-radius: 20px;
+      flex: 1.2;
+      min-width: 250px;
+      align-self: flex-start;
+    }
+
+    .intro-highlight h3 {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #0b1a2f;
+    }
+
+    .intro-highlight ul {
+      list-style: none;
+    }
+
+    .intro-highlight li {
+      padding: 0.35rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .intro-highlight li::before {
+      content: "▹";
+      color: #2f80ed;
+      font-weight: 600;
+    }
+
+    /* 三个场景模块 */
+    .scenes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 1.5rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s, box-shadow 0.25s;
+      border: 1px solid #e9edf4;
+    }
+
+    .scene-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .scene-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .scene-card h3 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .scene-card p {
+      font-size: 0.95rem;
+      color: #3b4a5e;
+      margin-bottom: 1.2rem;
+    }
+
+    .scene-card a {
+      color: #1e3c72;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px dotted #2f80ed;
+      padding-bottom: 1px;
+    }
+
+    .scene-card a:hover {
+      color: #2f80ed;
+      border-bottom-style: solid;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #f1f5fa;
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .faq-mini h3 {
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 1.6rem;
+      color: #0d1e38;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .faq-item {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #dce3ed;
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      color: #0f2a4a;
+    }
+
+    .faq-a {
+      flex: 3;
+      min-width: 200px;
+      color: #2d3f58;
+    }
+
+    .faq-a a {
+      color: #2f80ed;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .site-footer {
+      border-top: 1px solid #dce2ec;
+      padding: 2rem 0 1rem;
+      font-size: 0.9rem;
+      color: #5a6e87;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .intro-grid {
+        flex-direction: column;
+      }
+      .faq-item {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .content-area {
+        padding: 1.8rem 1.2rem 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 + 导航 -->
+  <section class="hero-dark">
+    <div class="hero-inner">
+      <nav class="nav-bar">
+        <span class="nav-logo">⚽ 世界杯枢纽</span>
+        <div class="nav-links">
+          <a href="#intro">赛事概览</a>
+          <a href="#scenes">场景</a>
+          <a href="#faq">常见说明</a>
+        </div>
+      </nav>
+      <h1 class="hero-title">通往 <span>世界杯</span> 的信息前沿</h1>
+      <p class="hero-sub">聚焦2026美加墨 · 中国球迷的轻量导航站 —— 赛事结构、观赛建议、资格追踪，一站梳理。</p>
+    </div>
+  </section>
+
+  <!-- 浅色正文区 -->
+  <main class="content-area">
+
+    <!-- 核心介绍 + 侧边要点 -->
+    <div class="intro-grid" id="intro">
+      <div class="intro-text">
+        <h2>世界杯 · 中国视角</h2>
+        <p>
+          足球世界的最高舞台——<a href="https://china-portal-fifa2026.com">世界杯</a>，正在进化为48队的全新格局。2026年由美国、加拿大、墨西哥联合举办，赛制与名额均发生结构性变化。对于中国球迷而言，预选赛路线、小组抽签逻辑、以及跨时区观赛方案，都值得提前梳理。
+        </p>
+        <p>
+          本页面作为轻量导航型信息聚合，提供三大实用模块：赛程节奏分析、热门观赛场景、以及高频疑问摘要。所有内容均基于公开赛事信息，力求简洁清晰。
+        </p>
+      </div>
+      <div class="intro-highlight">
+        <h3>快速要点</h3>
+        <ul>
+          <li>48队分12组，每组前二晋级</li>
+          <li>北美洲东部/山地/太平洋三时区</li>
+          <li>亚洲区8.5个名额，竞争激烈</li>
+          <li>揭幕战预计2026年6月11日</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes" id="scenes">
+      <div class="scene-card">
+        <span class="scene-icon">🗓️</span>
+        <h3>赛程与分组</h3>
+        <p>预选赛阶段已陆续展开，完整抽签将于2025年底举行。关注亚洲区第三阶段及附加赛走势，提前锁定关键日期。</p>
+        <a href="https://china-portal-fifa2026.com">世界杯</a> · 赛历概览
+      </div>
+      <div class="scene-card">
+        <span class="scene-icon">🏟️</span>
+        <h3>城市与球场</h3>
+        <p>16座主办球场分布全美，蒙特雷、温哥华等地同样承办。了解城市交通、气候及住宿参考，规划你的跨城观赛路线。</p>
+        <a href="https://china-portal-fifa2026.com">世界杯</a> · 球场档案
+      </div>
+      <div class="scene-card">
+        <span class="scene-icon">📺</span>
+        <h3>转播与资讯</h3>
+        <p>中国大陆转播权尚未正式公布，但主流平台大概率覆盖。订阅官方渠道可避免时区误判，回放与集锦同样重要。</p>
+        <a href="https://china-portal-fifa2026.com">世界杯</a> · 媒体清单
+      </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-mini" id="faq">
+      <h3>❓ 常见说明 · 摘要</h3>
+      <div class="faq-item">
+        <span class="faq-q">中国队的晋级可能？</span>
+        <span class="faq-a">目前处于预选赛第二阶段，需稳定积分进入第三阶段。最终8.5个名额中争夺非常激烈，现排名亚洲第8左右，尚存理论可能。</span>
+      </div>
+      <div class="faq-item">
+        <span class="faq-q">如何获取官方赛程？</span>
+        <span class="faq-a">FIFA官网及<a href="https://china-portal-fifa2026.com">世界杯</a>专题页会第一时间发布。建议将中文信息门户加入收藏，获取翻译版分组与时间。</span>
+      </div>
+      <div class="faq-item">
+        <span class="faq-q">中国球迷观赛时差？</span>
+        <span class="faq-a">东海岸比北京晚12-13小时，西海岸晚15-16小时。夜场比赛对应北京清晨，黄金时段多为上午。提前调整作息可提升体验。</span>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="site-footer">
+      <span>© 2025 世界杯轻导航 · 信息仅供个人参考</span>
+      <span>数据来源 FIFA 公开文件 · 非官方页面</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
